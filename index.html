@@ -1,0 +1,832 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>游戏内容热点日报 2026-08-30</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #FAF5EC; color: #3E3628;
+  font: 15px/1.7 -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 30px 20px 70px; }
+
+/* 奶油渐变横幅 */
+.banner { background: linear-gradient(135deg, #FFF3DF 0%, #FFE9C8 60%, #FFDFAE 100%);
+  border: 1px solid #F0DFC0; border-radius: 18px; padding: 32px 36px 28px;
+  box-shadow: 0 3px 14px rgba(196, 150, 80, .10); }
+.banner .kicker { color: #B08844; font-size: 12.5px; letter-spacing: 3px; font-weight: 600; }
+.banner h1 { font-size: 27px; font-weight: 800; letter-spacing: 1px; margin-top: 6px; }
+.banner .meta { color: #8A7F6C; font-size: 14px; margin-top: 10px; }
+.banner .summary { margin-top: 14px; font-size: 13.5px; color: #6B5F4A; }
+.chip { display: inline-block; background: rgba(255,255,255,.78); border: 1px solid #EBD9B4;
+  border-radius: 999px; padding: 2px 12px; font-size: 12.5px; color: #7A6A4A; margin: 6px 8px 0 0; }
+.chip b { color: #B06F14; }
+
+/* 卡片 */
+.card { background: #FFFDF9; border: 1px solid #F0E7D8; border-radius: 16px;
+  padding: 24px 28px; margin-top: 20px; box-shadow: 0 2px 10px rgba(190, 150, 90, .07); }
+.card-head { display: flex; align-items: center; }
+.card-title { font-size: 17px; font-weight: 700; display: flex; align-items: center; }
+.dot { width: 9px; height: 9px; border-radius: 50%; margin-right: 10px; flex: none; }
+.logic-note { background: #FBF4E4; border: 1px solid #F0E3C4; border-left: 3px solid #F5B93F;
+  color: #8A7A55; font-size: 12.5px; border-radius: 8px; padding: 8px 14px; margin: 12px 0 14px; }
+
+/* 小节标题 */
+.sec { display: flex; align-items: center; font-size: 14.5px; font-weight: 700;
+  margin: 16px 0 8px; color: #3E3628; }
+.sec::before { content: ""; width: 4px; height: 15px; border-radius: 2px;
+  background: linear-gradient(180deg, #F7C558, #F5B93F); margin-right: 9px; }
+
+/* 统计数字 */
+.stat-row { display: flex; gap: 14px; margin-top: 20px; }
+.stat { flex: 1; background: #FFFDF9; border: 1px solid #F0E7D8; border-radius: 16px;
+  padding: 16px 20px 14px; position: relative; overflow: hidden;
+  box-shadow: 0 2px 10px rgba(190,150,90,.07); transition: transform .15s ease, box-shadow .15s ease; }
+.stat:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(190,150,90,.14); }
+.stat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #F7C558, #F5B93F); }
+.stat .num { font-size: 30px; font-weight: 800; line-height: 1.3; }
+.stat .num.hl { color: #C8862B; }
+.stat .lbl { color: #8A7F6C; font-size: 13px; }
+.stat .sub { color: #B3A68C; font-size: 11.5px; margin-top: 2px; }
+
+/* 表格 */
+table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+th { text-align: left; color: #A99B80; font-size: 12.5px; font-weight: 600;
+  padding: 9px 10px; border-bottom: 2px solid #F0E7D8; white-space: nowrap; }
+td { padding: 11px 10px; border-bottom: 1px solid #F5EEDF; font-size: 14px; vertical-align: top; }
+tbody tr:nth-child(even) { background: #FDF8EE; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #FBF2E0; }
+a { color: #4A6FA5; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.rank-badge { display: inline-block; min-width: 27px; text-align: center; padding: 2px 8px;
+  border-radius: 7px; font-size: 13px; font-weight: 700; color: #8A7F6C; background: #F3EDE0; }
+.rank-badge.top { background: linear-gradient(135deg, #FFD66B, #F5B93F); color: #6B4E00;
+  box-shadow: 0 1px 3px rgba(214,158,46,.35); }
+.tag-new { display: inline-block; padding: 1px 8px; border-radius: 5px; font-size: 12px;
+  line-height: 1.6; margin-left: 6px; vertical-align: 1px; white-space: nowrap;
+  background: #FFF3D6; color: #8A6500; border: 1px solid #F0DCA8; }
+
+/* B站指标组 */
+.play { font-weight: 700; color: #3E3628; white-space: nowrap; }
+.metrics { color: #9C8E72; font-size: 12.5px; margin-top: 3px; }
+.summary-line { color: #A99B80; font-size: 12.5px; margin-top: 3px; }
+
+/* TapTap 图标（懒加载，加载失败只留底色不塌版） */
+.tt-icon { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; display: block;
+  background: #F3EDE0; border: 1px solid #F0E7D8; }
+.tt-icon-ph { width: 44px; height: 44px; border-radius: 10px; background: #F6F2E8;
+  border: 1px solid #EDE6D4; display: flex; align-items: center; justify-content: center;
+  color: #C9BFA8; font-size: 11px; }
+
+/* 热度条 */
+.heat-bar { height: 4px; border-radius: 2px; background: #F3EDE0; margin-top: 6px; overflow: hidden; }
+.heat-bar i { display: block; height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, #F7C558, #F0A93B); }
+
+/* 上升热点 */
+.rising-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.rising-item { background: #FFF9EC; border: 1px solid #F0E3C4; border-radius: 999px;
+  padding: 4px 14px; font-size: 13px; color: #7A6A4A; }
+.rising-item b { color: #C8862B; margin-right: 4px; }
+
+/* 抖音热搜卡片列表 */
+.dy-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.dy-item { display: flex; gap: 14px; background: #FFFDF9; border: 1px solid #F0E7D8;
+  border-radius: 12px; padding: 12px 14px; }
+.dy-cover { width: 88px; height: 88px; flex: none; border-radius: 10px; object-fit: cover;
+  background: #F3EDE0; border: 1px solid #F0E7D8; }
+.dy-cover-ph { width: 88px; height: 88px; flex: none; border-radius: 10px; background: #F6F2E8;
+  border: 1px solid #EDE6D4; display: flex; align-items: center; justify-content: center;
+  color: #C9BFA8; font-size: 12px; }
+.dy-info { flex: 1; min-width: 0; }
+.dy-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dy-title a { font-weight: 700; color: #3E3628; font-size: 15px; }
+.dy-title a:hover { color: #C8862B; text-decoration: none; }
+.topic-link { display: inline-block; margin-top: 6px; font-size: 12.5px; color: #4A6FA5;
+  border: 1px solid #D8E0EC; background: #F7FAFD; border-radius: 999px; padding: 1px 12px; }
+.topic-link:hover { background: #EEF4FA; text-decoration: none; }
+
+/* 微信公众号按游戏分组 */
+.wx-group { margin: 10px 0 0; }
+.wx-game { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14.5px;
+  color: #3E3628; padding: 7px 12px; background: #FBF4E4; border: 1px solid #F0E3C4; border-radius: 10px; }
+.wx-art { padding: 9px 12px 11px; border-bottom: 1px dashed #F0E7D8; }
+.wx-group:last-child .wx-art { border-bottom: none; }
+.wx-empty { margin: 8px 12px 0; }
+.tag-old { display: inline-block; padding: 1px 8px; border-radius: 5px; font-size: 12px;
+  line-height: 1.6; margin-left: 6px; vertical-align: 1px; white-space: nowrap;
+  background: #F6F2E8; color: #8A7F6C; border: 1px solid #E4DCC8; }
+
+/* 提示条 */
+.hint-gray { background: #F6F2E8; color: #8A7F6C; border: 1px solid #EDE6D4;
+  border-radius: 10px; padding: 12px 16px; font-size: 13px; }
+.hint-red { background: #FDF1EC; border: 1px solid #F3D4C4; color: #B4583A;
+  border-radius: 10px; padding: 12px 16px; font-size: 13px; }
+
+/* 健康 */
+.health-row { display: flex; align-items: center; padding: 8px 0;
+  border-bottom: 1px solid #F5EEDF; font-size: 14px; }
+.health-row:last-child { border-bottom: none; }
+.hb { display: inline-block; padding: 1px 11px; border-radius: 999px; font-size: 12px;
+  margin: 0 10px; flex: none; }
+.hb-ok { background: #EAF6EC; color: #2E7D4F; border: 1px solid #BFE3C8; }
+.hb-failed { background: #FDF1EC; color: #B4583A; border: 1px solid #F3D4C4; }
+.hb-skipped { background: #F6F2E8; color: #8A7F6C; border: 1px solid #EDE6D4; }
+.hb-partial { background: #FBF4E4; color: #8A6500; border: 1px solid #EBD9B4; }
+
+.trend { white-space: nowrap; font-size: 13px; }
+.trend-up { color: #2E9E5B; }
+.trend-down { color: #C8504A; }
+.trend-flat { color: #C9BFA8; }
+.muted { color: #A99B80; font-size: 12.5px; }
+.note { color: #8A7F6C; font-size: 13.5px; }
+.down-out { color: #A99B80; font-size: 12.5px; margin-top: 10px; }
+
+.footer { text-align: center; color: #B3A68C; font-size: 12px; margin-top: 30px; line-height: 2; }
+.footer::before { content: ""; display: block; width: 120px; height: 2px; margin: 0 auto 14px;
+  background: linear-gradient(90deg, transparent, #E3CDA0, transparent); }
+
+/* ===== v3.4：顶部导航 / 横幅装饰 / 解读要点式 / 热门内容封面 / 手机适配 ===== */
+html { scroll-behavior: smooth; }
+.nav-bar { position: sticky; top: 0; z-index: 60; display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 14px 0 0; padding: 10px 12px; background: rgba(250,245,236,.94);
+  border: 1px solid #F0E7D8; border-radius: 14px; box-shadow: 0 2px 8px rgba(190,150,90,.08); }
+.nav-bar a { display: inline-block; padding: 4px 14px; border-radius: 999px; font-size: 12.5px;
+  color: #7A6A4A; background: #FFFDF9; border: 1px solid #EBD9B4; text-decoration: none;
+  white-space: nowrap; }
+.nav-bar a:hover { background: #FBF2E0; border-color: #F5B93F; color: #B06F14; text-decoration: none; }
+.card { scroll-margin-top: 66px; }  /* 锚点跳转不被 sticky 导航遮住 */
+
+.banner { position: relative; overflow: hidden;
+  background: radial-gradient(circle at 88% 18%, rgba(255,255,255,.6), transparent 42%),
+              linear-gradient(135deg, #FFF6E4 0%, #FFEBCB 55%, #FFDCA3 100%); }
+.banner::after { content: "热点"; position: absolute; right: 14px; bottom: -10px;
+  font-size: 78px; font-weight: 800; letter-spacing: 8px; color: rgba(224,158,54,.13);
+  pointer-events: none; }
+.banner .kicker { display: flex; align-items: center; gap: 10px; }
+.banner .kicker::before, .banner .kicker::after { content: ""; height: 2px; width: 26px;
+  border-radius: 1px; background: linear-gradient(90deg, transparent, #D9A43C); }
+.banner .kicker::after { background: linear-gradient(90deg, #D9A43C, transparent); }
+.banner h1 { font-size: 30px; letter-spacing: 4px; margin-top: 8px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.55); }
+.banner h1::after { content: ""; display: block; width: 58px; height: 4px; margin-top: 12px;
+  border-radius: 2px; background: linear-gradient(90deg, #F7C558, #F0A93B); }
+
+/* 行业解读要点式 */
+.ins-block { margin-top: 4px; }
+.ins-li { position: relative; padding-left: 18px; margin: 5px 0;
+  color: #5C5240; font-size: 14.5px; line-height: 1.75; }
+.ins-li::before { content: ""; position: absolute; left: 3px; top: .68em; width: 6px; height: 6px;
+  border-radius: 50%; background: linear-gradient(135deg, #F7C558, #F0A93B); }
+.ins-li b { color: #C8862B; }
+.ins-para { color: #5C5240; font-size: 14.5px; white-space: pre-wrap; margin-top: 4px; }
+
+/* TapTap 热门内容封面（懒加载，加载失败只留底色不塌版） */
+.ff-cover { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; display: block;
+  background: #F3EDE0; border: 1px solid #F0E7D8; }
+.ff-cover-ph { width: 44px; height: 44px; border-radius: 10px; background: #F6F2E8;
+  border: 1px solid #EDE6D4; display: flex; align-items: center; justify-content: center;
+  color: #C9BFA8; font-size: 11px; }
+.ff-comment { color: #8A7F6C; font-size: 12.5px; margin-top: 3px; }
+.ff-comment b { color: #B06F14; }
+
+/* ===== v3.5：TapTap 双榜切换（纯 CSS，radio 位于卡内所有兄弟节点之前） ===== */
+.tt-radio { display: none; }
+.tt-tabs { display: flex; gap: 8px; margin: 0 0 12px; }
+.tt-tab-btn { display: inline-block; padding: 5px 18px; border-radius: 999px; font-size: 13px;
+  color: #7A6A4A; background: #FFFDF9; border: 1px solid #EBD9B4; cursor: pointer;
+  user-select: none; transition: background .15s ease; }
+.tt-tab-btn:hover { border-color: #F5B93F; color: #B06F14; }
+#tt-tab-games:checked ~ .tt-tabs label[for="tt-tab-games"],
+#tt-tab-feed:checked ~ .tt-tabs label[for="tt-tab-feed"] {
+  background: #F5B93F; border-color: #F5B93F; color: #6B4E00; font-weight: 700; }
+#tt-tab-games:checked ~ .tt-panel-feed { display: none; }
+#tt-tab-feed:checked ~ .tt-panel-games { display: none; }
+
+/* 表格横滚容器（手机端表格在卡内横向滚动而非挤碎文字） */
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 16px 12px 50px; }
+  .banner { padding: 22px 18px 20px; border-radius: 14px; }
+  .banner h1 { font-size: 22px; letter-spacing: 2px; }
+  .card { padding: 16px 12px; }
+  .nav-bar { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nav-bar a { flex: none; }
+  .stat-row { flex-wrap: wrap; gap: 10px; }
+  .stat { flex: 1 1 44%; min-width: 140px; }
+  .stat .num { font-size: 24px; }
+  .dy-cover, .dy-cover-ph { width: 64px; height: 64px; }
+  .table-wrap table { min-width: 560px; }
+  td { padding: 9px 6px; font-size: 13px; }
+  th { padding: 8px 6px; font-size: 11.5px; }
+}
+</style></head><body><div class="wrap">
+<header class="banner">
+<div class="kicker">游戏行业热点追踪</div>
+<h1>游戏内容热点日报</h1>
+<div class="meta">2026-08-30 · 星期日 · 生成于 2026-08-30 17:42:57</div>
+<div class="summary">今日共收集 <b>62</b> 条游戏热点：抖音 2 · B站 20 · TapTap 20 · TapTap社区 20</div>
+<div>
+<span class="chip">数据源 <b>4</b> 个正常</span>
+<span class="chip">今日新上榜 <b>58</b></span>
+</div></header>
+<nav class="nav-bar">
+<a href="#sec-douyin">抖音</a>
+<a href="#sec-bilibili">B站</a>
+<a href="#sec-taptap">TapTap 双榜</a>
+<a href="#sec-health">健康状态</a>
+</nav>
+<section class="card"><div class="card-head"><div class="card-title">行业解读</div></div>
+<div class="sec">今日总览</div>
+<div class="ins-block"><div class="ins-li">抖音聚焦<b>金铲铲之战</b>五周年礼物晒图，<b>三角洲</b>新刀皮爆料引热议。</div>
+<div class="ins-li">B站多线开花：<b>异环</b>实机、<b>龙族</b>联动EVA、<b>我的世界</b>二创霸榜。</div>
+<div class="ins-li">TapTap热榜<b>我的世界</b>居首，社区讨论分散于养成与抽卡话题。</div></div>
+<div class="sec">趋势洞察</div>
+<div class="ins-block"><div class="ins-li"><b>我的世界</b>二创生态活跃，MC音效配新宿决战、共享背包等创意内容出圈。</div>
+<div class="ins-li"><b>异环</b>与<b>无限大</b>线下试玩视频集中发布，开放世界赛道竞争白热化。</div>
+<div class="ins-li"><b>龙族</b>联动EVA，经典IP跨界合作成暑期档吸量利器。</div>
+<div class="ins-li">科隆游戏展预告片《古神：风里希》受关注，单机新作预热期话题升温。</div></div>
+<div class="sec">选题建议</div>
+<div class="ins-block"><div class="ins-li">抖音 | 五周年福利盘点 | 金铲铲五周年礼物全收集，这些隐藏奖励别错过</div>
+<div class="ins-li">B站 | 联动内容解析 | 龙族xEVA联动角色强度与情怀双分析</div>
+<div class="ins-li">TapTap | 社区攻略向 | 诡秘之主新手开荒避坑指南，战力提升路线</div></div>
+<div class="sec">风险提示</div>
+<div class="ins-block"><div class="ins-li">无</div></div>
+</section>
+<div class="stat-row">
+<div class="stat"><div class="num hl">62</div><div class="lbl">游戏热点</div><div class="sub">四大板块</div></div>
+<div class="stat"><div class="num">58</div><div class="lbl">新上榜</div><div class="sub">较昨日新进入游戏榜</div></div>
+<div class="stat"><div class="num">16</div><div class="lbl">下榜</div><div class="sub">昨日在榜今日消失</div></div>
+</div>
+<section class="card" id="sec-douyin"><div class="card-head"><div class="card-title"><span class="dot" style="background:#FE2C55"></span>抖音游戏热榜</div></div><div class="logic-note">榜单逻辑：抖音热搜榜全量热搜 → 游戏关键词 + AI 强相关复核 → 按官方热度值降序排列。封面为抖音官方话题图，点击话题链接可查看该话题下的全部视频；免费渠道无单条视频的点赞/收藏数据，仅展示官方热度值与相关量。</div>
+<div class="dy-list">
+<div class="dy-item">
+<img class="dy-cover" src="https://p3-sign.douyinpic.com/tos-cn-p-0015/o45gDJeYgvAelSSAg2BYMrV1geBQSXqKfCY4EP~noop.jpeg?lk3s=bfd515bb&amp;x-expires=1788102000&amp;x-signature=IPpd5VOrN%2BPu4m1%2FnP4x%2BPSnTn0%3D&amp;from=3218412987" alt="" loading="lazy">
+<div class="dy-info">
+<div class="dy-title"><span class="rank-badge top">1</span><a href="https://www.douyin.com/hot/2629215" target="_blank" rel="noopener">晒一晒我的金铲铲五周年礼物</a><span style="margin-left:auto"><span class="trend"><span class="tag-new">新上榜</span></span></span></div>
+<div class="metrics">热度 771.2万 · 视频 3 · 讨论 1 · 上榜 08-30 14:43</div>
+<div class="heat-bar"><i style="width:100%"></i></div>
+<a class="topic-link" href="https://www.douyin.com/hot/2629215" target="_blank" rel="noopener">在抖音查看该话题视频</a>
+</div></div>
+<div class="dy-item">
+<img class="dy-cover" src="https://p5-ex-gddgtc-sign.douyinpic.com/tos-cn-p-0015/ocKJAQQtIiwSRyyJRXkiGASIPHapIZxBPa8p6~noop.jpeg?lk3s=bfd515bb&amp;x-expires=1788102000&amp;x-signature=1N0zigq8OLlN1r6OJE4KsPvHdks%3D&amp;from=3218412987" alt="" loading="lazy">
+<div class="dy-info">
+<div class="dy-title"><span class="rank-badge top">2</span><a href="https://www.douyin.com/hot/2628859" target="_blank" rel="noopener">三角洲S11新刀皮爆料</a><span style="margin-left:auto"><span class="trend"><span class="tag-new">新上榜</span></span></span></div>
+<div class="metrics">热度 767.5万 · 视频 3 · 讨论 1 · 上榜 08-30 09:45</div>
+<div class="heat-bar"><i style="width:99%"></i></div>
+<a class="topic-link" href="https://www.douyin.com/hot/2628859" target="_blank" rel="noopener">在抖音查看该话题视频</a>
+</div></div>
+</div>
+<div class="down-out">昨日在榜今日消失：NIP 3:0战胜EDG、Rookie和TheShy双人3000击杀、第五人格医生野草莓时装爆料</div>
+<div class="sec">实时上升热点</div>
+<div class="hint-gray">今日暂无游戏相关的实时上升热点，可稍后重跑一次再看。</div>
+</section>
+<section class="card" id="sec-bilibili"><div class="card-head"><div class="card-title"><span class="dot" style="background:#FB7299"></span>B站游戏热榜</div></div><div class="logic-note">榜单逻辑：B站热门榜前 50 → 游戏关键词 + AI 强相关复核 → 按播放量降序排列。互动数据为接口直接提供的全量指标。</div>
+<div class="table-wrap"><table><thead><tr><th>排名</th><th>标题</th><th>播放</th><th>互动数据</th><th>分区 · UP主</th><th>较昨日</th></tr></thead><tbody>
+<tr>
+<td><span class="rank-badge top">1</span></td>
+<td><a href="https://www.bilibili.com/video/BV1xQtw6WELS" target="_blank" rel="noopener">《古神: 风里希》科隆游戏展最新预告片 | 世界观前瞻</a></td>
+<td><div class="play">播放 455.9万</div><div class="muted">时长 1:45</div></td>
+<td class="metrics">赞 4.4万 · 币 3.5万 · 藏 2.3万 · 弹 2028 · 评 4938 · 分享 1650</td>
+<td class="muted">单机游戏 · 古神风里希</td>
+<td><span class="trend trend-up">↑4</span></td>
+</tr>
+<tr>
+<td><span class="rank-badge top">2</span></td>
+<td><a href="https://www.bilibili.com/video/BV1zG4d6dEka" target="_blank" rel="noopener">我在PVZ中添加了大果？？ 【bilibilionly同人扶持计划】</a></td>
+<td><div class="play">播放 453.4万</div><div class="muted">时长 2:12</div></td>
+<td class="metrics">赞 21.5万 · 币 2962 · 藏 2.1万 · 弹 1922 · 评 4193 · 分享 1.4万</td>
+<td class="muted">单机游戏 · 咸威化</td>
+<td><span class="trend trend-flat">－</span></td>
+</tr>
+<tr>
+<td><span class="rank-badge top">3</span></td>
+<td><a href="https://www.bilibili.com/video/BV1zCtA6mEay" target="_blank" rel="noopener">【明日方舟×女神异闻录３ Reload】SideStory「月行水上」活动宣传PV</a></td>
+<td><div class="play">播放 382.4万</div><div class="muted">时长 3:16</div></td>
+<td class="metrics">赞 26.8万 · 币 9.4万 · 藏 5.0万 · 弹 2.9万 · 评 3.1万 · 分享 14.3万</td>
+<td class="muted">手机游戏 · 明日方舟</td>
+<td><span class="trend trend-up">↑4</span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">4</span></td>
+<td><a href="https://www.bilibili.com/video/BV1wwtN6sEVJ" target="_blank" rel="noopener">【终末地动画】小龙欠了织烟God十万调度券所以她将追求小龙</a></td>
+<td><div class="play">播放 151.7万</div><div class="muted">时长 0:44</div></td>
+<td class="metrics">赞 17.9万 · 币 1.8万 · 藏 7.7万 · 弹 512 · 评 5866 · 分享 2.7万</td>
+<td class="muted">MMD·3D · 博丽x海苔</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">5</span></td>
+<td><a href="https://www.bilibili.com/video/BV1xMtw6XEAu" target="_blank" rel="noopener">【憋笑大挑战】人类一败涂地（24）</a></td>
+<td><div class="play">播放 113.0万</div><div class="muted">时长 2:49</div></td>
+<td class="metrics">赞 8.4万 · 币 736 · 藏 1.6万 · 弹 787 · 评 714 · 分享 1831</td>
+<td class="muted">校园学习 · 伟神的老弟专家</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">6</span></td>
+<td><a href="https://www.bilibili.com/video/BV1u4496BEZ6" target="_blank" rel="noopener">绝密航天一颗雷炸死六个全装</a></td>
+<td><div class="play">播放 99.2万</div><div class="muted">时长 0:45</div></td>
+<td class="metrics">赞 7.7万 · 币 1955 · 藏 9670 · 弹 375 · 评 2117 · 分享 9630</td>
+<td class="muted">网络游戏 · 轮回丶Hui</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">7</span></td>
+<td><a href="https://www.bilibili.com/video/BV163426vE3s" target="_blank" rel="noopener">火柴人 VS 我的世界 第四十集 苦力怕部族（Creeper Clan）</a></td>
+<td><div class="play">播放 87.9万</div><div class="muted">时长 12:21</div></td>
+<td class="metrics">赞 9.0万 · 币 2.6万 · 藏 3.3万 · 弹 1.8万 · 评 5055 · 分享 5704</td>
+<td class="muted">同人·手书 · 火柴人AlanBecker</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">8</span></td>
+<td><a href="https://www.bilibili.com/video/BV1MStP6YEas" target="_blank" rel="noopener">全网首发！恐游神作《House2》全结局！</a></td>
+<td><div class="play">播放 77.9万</div><div class="muted">时长 67:40</div></td>
+<td class="metrics">赞 5.1万 · 币 1.3万 · 藏 3.4万 · 弹 3918 · 评 1129 · 分享 2752</td>
+<td class="muted">单机游戏 · 孤独音符</td>
+<td><span class="trend trend-up">↑9</span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">9</span></td>
+<td><a href="https://www.bilibili.com/video/BV1D5tc6fEzM" target="_blank" rel="noopener">《龙族：卡塞尔之门》x《新世纪福音战士》全新联动 | 世界余响</a></td>
+<td><div class="play">播放 76.2万</div><div class="muted">时长 1:49</div></td>
+<td class="metrics">赞 3.9万 · 币 6512 · 藏 9370 · 弹 2684 · 评 1362 · 分享 7407</td>
+<td class="muted">手机游戏 · 龙族卡塞尔之门</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">10</span></td>
+<td><a href="https://www.bilibili.com/video/BV1uQ4C6rEzN" target="_blank" rel="noopener">摇人扔核弹的忍者来了！招募五星原创A忍不立土，再带大家看看火影搜打撤！刷图决斗秒伤拉满的实战测评！</a></td>
+<td><div class="play">播放 61.2万</div><div class="muted">时长 14:06</div></td>
+<td class="metrics">赞 3.2万 · 币 3513 · 藏 6237 · 弹 798 · 评 645 · 分享 2526</td>
+<td class="muted">手机游戏 · 鬼叔黍</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">11</span></td>
+<td><a href="https://www.bilibili.com/video/BV1CP4y6YESx" target="_blank" rel="noopener">一秒变异！夺舍6头6甲+满改M7+AWM，1352万撤离！</a></td>
+<td><div class="play">播放 58.6万</div><div class="muted">时长 3:47</div></td>
+<td class="metrics">赞 2.8万 · 币 542 · 藏 1947 · 弹 860 · 评 484 · 分享 190</td>
+<td class="muted">网络游戏 · 苏醒游戏解说</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">12</span></td>
+<td><a href="https://www.bilibili.com/video/BV1PFtT6eEBm" target="_blank" rel="noopener">“我找到了游戏的意义”</a></td>
+<td><div class="play">播放 57.5万</div><div class="muted">时长 1:46</div></td>
+<td class="metrics">赞 7.2万 · 币 1.6万 · 藏 2.1万 · 弹 723 · 评 2339 · 分享 2005</td>
+<td class="muted">单机游戏 · _PeterX_</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">13</span></td>
+<td><a href="https://www.bilibili.com/video/BV1PY4Q6dER1" target="_blank" rel="noopener">《洛克王国：世界》S4赛季奇遇新精灵登场！</a></td>
+<td><div class="play">播放 56.8万</div><div class="muted">时长 2:26</div></td>
+<td class="metrics">赞 2.8万 · 币 1918 · 藏 2273 · 弹 844 · 评 3488 · 分享 5573</td>
+<td class="muted">网络游戏 · 洛克王国世界</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">14</span></td>
+<td><a href="https://www.bilibili.com/video/BV1mQ4C66EvG" target="_blank" rel="noopener">恐怖版新关卡：诡异狂潮</a></td>
+<td><div class="play">播放 53.6万</div><div class="muted">时长 9:34</div></td>
+<td class="metrics">赞 2.6万 · 币 1803 · 藏 4666 · 弹 3929 · 评 3273 · 分享 469</td>
+<td class="muted">单机游戏 · 对不起贱笑了</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">15</span></td>
+<td><a href="https://www.bilibili.com/video/BV1UU4C6kEam" target="_blank" rel="noopener">《异环》角色实机战斗丨灵可</a></td>
+<td><div class="play">播放 50.6万</div><div class="muted">时长 5:26</div></td>
+<td class="metrics">赞 1.9万 · 币 2506 · 藏 1961 · 弹 526 · 评 6254 · 分享 1234</td>
+<td class="muted">网络游戏 · 异环</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">16</span></td>
+<td><a href="https://www.bilibili.com/video/BV1RC4169ELG" target="_blank" rel="noopener">打不过对面牢玩家，但可以吓的他不敢过来</a></td>
+<td><div class="play">播放 44.1万</div><div class="muted">时长 2:19</div></td>
+<td class="metrics">赞 3.7万 · 币 1546 · 藏 1132 · 弹 425 · 评 1068 · 分享 348</td>
+<td class="muted">单机游戏 · 磊哥游戏</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">17</span></td>
+<td><a href="https://www.bilibili.com/video/BV1TY4d6GEUu" target="_blank" rel="noopener">AI短片《那些年我们曾经玩过的游戏》来看看这里有你的回忆吗？【AI全民制作人】</a></td>
+<td><div class="play">播放 41.4万</div><div class="muted">时长 3:12</div></td>
+<td class="metrics">赞 2.6万 · 币 1391 · 藏 4176 · 弹 681 · 评 1711 · 分享 1515</td>
+<td class="muted">影视剪辑 · 往事留声机</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">18</span></td>
+<td><a href="https://www.bilibili.com/video/BV1if421e7PK" target="_blank" rel="noopener">韩国COD NEXT 现场体验现代战争4！到底好不好玩？</a></td>
+<td><div class="play">播放 37.6万</div><div class="muted">时长 6:25</div></td>
+<td class="metrics">赞 4.4万 · 币 538 · 藏 2967 · 弹 533 · 评 93 · 分享 1064</td>
+<td class="muted">单机游戏 · 邪神_Karasu_</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">19</span></td>
+<td><a href="https://www.bilibili.com/video/BV1S4tA68EFT" target="_blank" rel="noopener">【无限大】最新线下实机试玩体验如何？不用抽卡 上海杭州大融合！</a></td>
+<td><div class="play">播放 26.0万</div><div class="muted">时长 5:01</div></td>
+<td class="metrics">赞 1.6万 · 币 1504 · 藏 1859 · 弹 370 · 评 1908 · 分享 402</td>
+<td class="muted">手机游戏 · 叫我棉被</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr>
+<td><span class="rank-badge">20</span></td>
+<td><a href="https://www.bilibili.com/video/BV1hMtK6uEA7" target="_blank" rel="noopener">挑战 用MC音效 配 新宿决战（正经</a></td>
+<td><div class="play">播放 23.4万</div><div class="muted">时长 3:14</div></td>
+<td class="metrics">赞 3.6万 · 币 7759 · 藏 1.1万 · 弹 160 · 评 708 · 分享 1980</td>
+<td class="muted">单机游戏 · 滞销紫颂果</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+</tbody></table></div>
+<div class="down-out">昨日在榜今日消失：《洛克王国：世界》S4赛季「月涌狂想」PV首曝，新的冒险即将开启！、《源初之结》试玩，最不像米游的米游！？【印象】、《绝区零》3.2版本PV | 她与她的隐秘往事、【2026LPL第三赛段】8月28日 TT vs IG、【战双帕弥什】预告PV｜门徒</div>
+</section>
+<section class="card" id="sec-taptap">
+<input type="radio" name="tt-tab" id="tt-tab-games" class="tt-radio" checked>
+<input type="radio" name="tt-tab" id="tt-tab-feed" class="tt-radio">
+<div class="card-head"><div class="card-title"><span class="dot" style="background:#14B9C8"></span>TapTap 双榜</div></div>
+<div class="logic-note">游戏榜为 TapTap 官方游戏热门榜前 20（按最近下载热度排序，约每 20 分钟更新），顺序即官方榜位；热门内容为社区热门帖子按浏览量降序取前 20（热评仅部分帖子有，无热评时展示帖子摘要）。点击按钮切换两个榜单。</div>
+<div class="tt-tabs"><label for="tt-tab-games" class="tt-tab-btn">游戏榜</label><label for="tt-tab-feed" class="tt-tab-btn">热门内容</label></div>
+<div class="tt-panel tt-panel-games">
+<div class="table-wrap"><table><thead><tr><th>排名</th><th>图标</th><th>游戏</th><th>热度</th><th>评分 · 关注 · 帖子</th><th>标签</th><th>较昨日</th></tr></thead><tbody>
+<tr class="tt-row">
+<td><span class="rank-badge top">1</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/47b675b19c9af640cc021fd141d93a0e.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/43639" target="_blank" rel="noopener">我的世界：移动版</a></td>
+<td><div class="play">6798.3万</div></td>
+<td class="metrics">评分 6.5 · 关注 3974.5万 · 帖子 7.0万</td>
+<td class="muted">沙盒、开放世界、像素</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge top">2</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/9000b8b031deabbd424b7f2f530ee162.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/165287" target="_blank" rel="noopener">Phigros</a></td>
+<td><div class="play">5473.8万</div></td>
+<td class="metrics">评分 9.5 · 关注 1853.4万 · 帖子 11.0万</td>
+<td class="muted">音游、手速、节奏</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge top">3</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/db050dcbc3fdaee8c8e862699345950f.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/281223" target="_blank" rel="noopener">诡秘之主</a></td>
+<td><div class="play">190.2万</div></td>
+<td class="metrics">评分 7.3 · 关注 295.7万 · 帖子 9318</td>
+<td class="muted">MMORPG、诡秘之主、角色扮演</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">4</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/09c8ef702f386a011662e52dd5841097.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/206776" target="_blank" rel="noopener">蛋仔派对</a></td>
+<td><div class="play">4029.9万</div></td>
+<td class="metrics">评分 7.8 · 关注 3851.8万 · 帖子 5.6万</td>
+<td class="muted">多人联机、派对游戏、竞技</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">5</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/49e4df26c2dd6c0604b7ccc52877b8fe.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/45213" target="_blank" rel="noopener">心动小镇</a></td>
+<td><div class="play">6075.2万</div></td>
+<td class="metrics">评分 8.6 · 关注 3942.5万 · 帖子 36.5万</td>
+<td class="muted">模拟经营、治愈、多人联机</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">6</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/969d83eb2e875885cbe390708cd6a8b2.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/58881" target="_blank" rel="noopener">香肠派对</a></td>
+<td><div class="play">2.8亿</div></td>
+<td class="metrics">评分 8.6 · 关注 4330.7万 · 帖子 150.6万</td>
+<td class="muted">射击、吃鸡、战斗</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">7</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/1b7385da5dbf6d5342a832e6685e2066.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/224267" target="_blank" rel="noopener">崩坏：星穹铁道</a></td>
+<td><div class="play">3251.9万</div></td>
+<td class="metrics">评分 7.5 · 关注 1966.3万 · 帖子 26.9万</td>
+<td class="muted">角色扮演、冒险、策略</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">8</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/ec0bd50c4a0bafa60cde8d0f3775ee84.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/714119" target="_blank" rel="noopener">异环</a></td>
+<td><div class="play">850.4万</div></td>
+<td class="metrics">评分 7.1 · 关注 935.8万 · 帖子 4.6万</td>
+<td class="muted">开放世界、都市、角色扮演</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">9</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/325e80b05a18d1c0978c248c1dfcc501.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/176937" target="_blank" rel="noopener">金铲铲之战</a></td>
+<td><div class="play">1588.3万</div></td>
+<td class="metrics">评分 6.5 · 关注 3030.2万 · 帖子 6.2万</td>
+<td class="muted">自走棋、策略、英雄联盟</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">10</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/4c441769b5fb3b670c8b59a6124d9ff2.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/168332" target="_blank" rel="noopener">原神</a></td>
+<td><div class="play">9182.1万</div></td>
+<td class="metrics">评分 7.9 · 关注 3884.5万 · 帖子 45.9万</td>
+<td class="muted">开放世界、二次元、角色扮演</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">11</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/c4c725bb2f3373b8a82f6af2b49a8eb2.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/54031" target="_blank" rel="noopener">植物大战僵尸2</a></td>
+<td><div class="play">1555.7万</div></td>
+<td class="metrics">评分 6.1 · 关注 1008.8万 · 帖子 9.2万</td>
+<td class="muted">僵尸、塔防、单机</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">12</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/3437da7ae9c7e1fa13625964cea6c4cb.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/62448" target="_blank" rel="noopener">光·遇</a></td>
+<td><div class="play">4497.3万</div></td>
+<td class="metrics">评分 7.9 · 关注 2229.4万 · 帖子 27.0万</td>
+<td class="muted">唯美、治愈、艺术</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">13</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/0fc0077e96d968de907bbedd659ff280.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/815993" target="_blank" rel="noopener">TapAim</a></td>
+<td><div class="play">445.7万</div></td>
+<td class="metrics">评分 7.2 · 关注 317.8万 · 帖子 812</td>
+<td class="muted">工具、射击、模拟</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">14</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/515c6583cd5cb05f2f343e8b581df575.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/239372" target="_blank" rel="noopener">燕云十六声</a></td>
+<td><div class="play">1510.0万</div></td>
+<td class="metrics">评分 7.1 · 关注 1055.9万 · 帖子 4.9万</td>
+<td class="muted">开放世界、动作、武侠</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">15</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/8eaf06332c21b98845caafb017a476cc.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/234280" target="_blank" rel="noopener">鸣潮</a></td>
+<td><div class="play">2347.9万</div></td>
+<td class="metrics">评分 7.1 · 关注 1339.2万 · 帖子 21.7万</td>
+<td class="muted">开放世界、动作、ARPG</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">16</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/a3de733c22dcee003d67499052b89875.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/798699" target="_blank" rel="noopener">完蛋！我被男同学包围了</a></td>
+<td><div class="play">38.3万</div></td>
+<td class="metrics">评分 8.7 · 关注 41.0万 · 帖子 253</td>
+<td class="muted">剧情、AVG、休闲</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">17</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/bcec76f0e878361961d21993a82c4467.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/714123" target="_blank" rel="noopener">超自然行动组</a></td>
+<td><div class="play">1817.5万</div></td>
+<td class="metrics">评分 7.1 · 关注 1262.8万 · 帖子 5.8万</td>
+<td class="muted">搜打撤、盗墓、恐怖</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">18</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/eaee787b0772498dc4cfbcf1110892a9.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/767047" target="_blank" rel="noopener">超人飞行模拟器</a></td>
+<td><div class="play">28.3万</div></td>
+<td class="metrics">评分 5.3 · 关注 25.3万 · 帖子 139</td>
+<td class="muted">休闲</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">19</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/887d6263a7b117b583a7670890757eee.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/884591" target="_blank" rel="noopener">变色龙躲猫猫</a></td>
+<td><div class="play">56.1万</div></td>
+<td class="metrics">评分 8.7 · 关注 40.5万 · 帖子 171</td>
+<td class="muted">休闲</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="tt-row">
+<td><span class="rank-badge">20</span></td>
+<td><img class="tt-icon" src="https://img-tc.tapimg.com/market/images/850f77e5ace6278607fc7d19c1ea1ce7.png/_tap_appicon_s.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/app/241790" target="_blank" rel="noopener">Phigrim（TapTap测试版）</a></td>
+<td><div class="play">491.2万</div></td>
+<td class="metrics">评分 8.0 · 关注 316.2万 · 帖子 1473</td>
+<td class="muted">节奏、手速、音游</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+</tbody></table></div>
+
+</div><div class="tt-panel tt-panel-feed">
+<div class="table-wrap"><table><thead><tr><th>排名</th><th>封面</th><th>标题</th><th>浏览</th><th>赞 · 评</th><th>作者 · 游戏</th><th>较昨日</th></tr></thead><tbody>
+<tr class="ff-row">
+<td><span class="rank-badge top">1</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FjrvnieLEuAGWp0NJNu1Io77v3-7_20260708225548.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/824053882320585682" target="_blank" rel="noopener">不知不觉2年了</a><div class="ff-comment">过得好快啊</div></td>
+<td><div class="play">8.0万</div></td>
+<td class="metrics">赞 385 · 评 91</td>
+<td class="muted">寒渡 · 地下城堡3：魂之诗</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge top">2</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/Ft76Byn6HdWt1UgKhCYV3ujueojf_20260816165437.png/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/838099445999471001" target="_blank" rel="noopener">3500万战力通关龙骨2000层</a><div class="ff-comment">118党鏖战268天打通2000层，特别强调蓝密队伍真不建议新手玩家碰，1900多层以后密米尔很乏力了碰到肉奶队伍输出不</div></td>
+<td><div class="play">7.0万</div></td>
+<td class="metrics">赞 435 · 评 29</td>
+<td class="muted">小冉 · 龙魂旅人</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge top">3</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FqBplSNTdrRuRdhvWGgPn_RNKXq1_20260703132417.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/822098098091198906" target="_blank" rel="noopener">萌新抽卡歪了这个，强吗</a><div class="ff-comment">萌新抽卡歪了这个，强吗</div></td>
+<td><div class="play">5.6万</div></td>
+<td class="metrics">赞 270 · 评 38</td>
+<td class="muted">无聊 · 交错战线</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">4</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/ljudo6OiNVkB-K_Cssn4AFkcn-4u_20260721002517.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/828425027765405593" target="_blank" rel="noopener">花66666买的？怎么样？</a></td>
+<td><div class="play">3.3万</div></td>
+<td class="metrics">赞 297 · 评 106</td>
+<td class="muted">紫闲鱼阁主 · 我的勇者</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">5</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FjMxMydKJZCvr8DTqchWi5AzwMet_20260812225617.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/836738406217155955" target="_blank" rel="noopener">没想到玩了两年还是缺油</a><div class="ff-comment">今天刚给瓦下水，目前跳龙马，瓦，暴风雨都肝完了，现在肝高粱 又缺油了，邮件里面也只有2w了，之前没肝的时候油多的买咖喱，</div></td>
+<td><div class="play">1.3万</div></td>
+<td class="metrics">赞 69 · 评 75</td>
+<td class="muted">「荒谬诞神」 · 碧蓝航线</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">6</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/Fl69i4DDIrsXFJ9FC8lRbhJTOpxH_20260812103338.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/836550656738198960" target="_blank" rel="noopener">每天上线心情都变好了</a></td>
+<td><div class="play">1.3万</div></td>
+<td class="metrics">赞 63 · 评 14</td>
+<td class="muted">小饼 · 明日方舟</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">7</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/lnGnwCWILxeufTd13OSmsnfV39ut_20260802153122.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/833001727027315967" target="_blank" rel="noopener">天灵根！外门？</a><div class="ff-comment">原来庶务堂外门也能招到天灵根嘛！那你是怎么进外门的？</div></td>
+<td><div class="play">9497</div></td>
+<td class="metrics">赞 66 · 评 11</td>
+<td class="muted">风起黯萧然 · 修仙家族模拟器</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">8</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FjJdGnn4edQpkx5o-DyyaH61HpCF_20260819210624.png/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/839291081957834987" target="_blank" rel="noopener">侠客职业攻略-唤灵</a><div class="ff-comment">唤灵最近出来我也是马不停蹄地玩上了。因为本身也没怎么玩游侠，所以对侠客的卡牌不熟悉，也不太明白唤灵强的点，一度卡在极难。</div></td>
+<td><div class="play">8719</div></td>
+<td class="metrics">赞 71 · 评 54</td>
+<td class="muted">Njr · 魂坠深境</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">9</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/Fq1rhYCTOJ_KG3DeMgrrrbzEG4EF_20260706144414.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/823166387936562898" target="_blank" rel="noopener">十年道友路 圆梦小矮子</a><div class="ff-comment">一晃眼，玩《道友请留步》居然整整十年了。2016年暑假在应用宝偶然刷到游戏广告，被里面炫酷的技能和合击技吸引入了坑。那时</div></td>
+<td><div class="play">8080</div></td>
+<td class="metrics">赞 70 · 评 28</td>
+<td class="muted">No.1 Handsome · 道友请留步</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">10</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FthV_EsyyKpniztDHsN5c7LAlu_y_20260804170312.png/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/833749591470902730" target="_blank" rel="noopener">刚入坑，就能遇到这种素质低下的人，服了</a><div class="ff-comment">刚入坑，就能遇到这种素质低下的人，服了</div></td>
+<td><div class="play">7432</div></td>
+<td class="metrics">赞 47 · 评 37</td>
+<td class="muted">。。。 · 卡拉彼丘</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">11</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FpJbI5HMEdbv6daUFugh53c2Wh6c_20260820163945.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/839542999791699493" target="_blank" rel="noopener">李白的技能模组会是怎样的呢</a><div class="ff-comment">#王者荣耀世界 #王者荣耀世界s1赛季</div></td>
+<td><div class="play">5574</div></td>
+<td class="metrics">赞 7 · 评 4</td>
+<td class="muted">幽默来源灵魂 · 王者荣耀世界</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">12</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/loSwLuj_7IYyaL5ghhobhbsDYsjL_20260823020823.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/840409775979102991" target="_blank" rel="noopener">就像回到了24年那个夏天，不过这次是在上海</a><div class="ff-comment">有种预感以后不一定还有机会了 仍旧非常感谢战双，感谢库洛给的机会 丝毫不怀疑自己对战双的热爱 也同样庆幸有着那么多热爱战</div></td>
+<td><div class="play">4914</div></td>
+<td class="metrics">赞 64 · 评 5</td>
+<td class="muted">CarlTuring · 战双帕弥什</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">13</span></td>
+<td><img class="ff-cover" src="https://img-tc.tapimg.com/video-picture/tid-6a758d19f524264b3e647293/first.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/834817187951676819" target="_blank" rel="noopener">避雷这个人</a><div class="ff-comment">避雷一下，这个人冒充官方，并且盗走官方视频、融了AI，我是在ks上面看到的，希望各位渡梦者可以去举报一下，谢谢😭</div></td>
+<td><div class="play">3575</div></td>
+<td class="metrics">赞 16 · 评 6</td>
+<td class="muted">血緢 · 代号：梦核（TapTap测试版）</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">14</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FnOjPP6JFnPvttf3yWAbcXlBGFON_20260722082139.png/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/828907424030132736" target="_blank" rel="noopener">0氪 第十六天，卡战力了，，，是不是不应该直接搞这种毕业装备</a><div class="ff-comment">0氪 第十六天，卡战力了，，，是不是不应该直接搞这种毕业装备[表情_震惊]</div></td>
+<td><div class="play">3363</div></td>
+<td class="metrics">赞 6 · 评 20</td>
+<td class="muted">夕阳丶红 · 雷霆战机：集结</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">15</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FrbL1N6qlmMupOKq3kelhCSKz0uE_20260817142349.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/838420528208285551" target="_blank" rel="noopener">又游戏荒了？这几款游戏的操作性堪称顶级，不接受反驳</a><div class="ff-comment">现实的情况是第一排，质量绝对实打实的夯爆了，战斗属性拉满，属于是你屎我活，热衷于高强度对战的玩家可选[表情_斜眼笑] 第</div></td>
+<td><div class="play">2735</div></td>
+<td class="metrics">赞 10 · 评 5</td>
+<td class="muted">游戏探索家 · 未关联游戏</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">16</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/Fi3gK0yPjtGYM_v8DYaZLTMUIWH-_20260809012815.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/835326244294756957" target="_blank" rel="noopener">这个是彩蛋吗？保险箱塞满了</a><div class="ff-comment">这个是彩蛋吗？保险箱塞满了</div></td>
+<td><div class="play">2457</div></td>
+<td class="metrics">赞 26 · 评 8</td>
+<td class="muted">中午吃什么？ · 搜打撤模拟器</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">17</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FnJIyM7vOjud4GWVQUhVYAPGMOyA_20260705010851.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/822637787361575237" target="_blank" rel="noopener">终于击败珊瑚大白鲨了，想着第一次见到这货，感觉就和个擎天柱一</a><div class="ff-comment">终于击败珊瑚大白鲨了，想着第一次见到这货，感觉就和个擎天柱一样，从此吓得看见个大玩意出来，都吓一跳，尽管可能只是个石头。</div></td>
+<td><div class="play">2104</div></td>
+<td class="metrics">赞 27 · 评 2</td>
+<td class="muted">我和你的日常就是奇迹 · 海底猎杀生存</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">18</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/Fhk7tqD9slAd7OWmX8Kaljxg0NM2_20260811043849.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/836098976968082805" target="_blank" rel="noopener">太会爱人了</a><div class="ff-comment">太会爱人了</div></td>
+<td><div class="play">2094</div></td>
+<td class="metrics">赞 19 · 评 5</td>
+<td class="muted">い酱 · 妹居物语</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">19</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FkUusRKrblcZefDDWWHzSQdsaPxW_20260827215719.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/842159468740346701" target="_blank" rel="noopener">迷雾大陆S15新职业曝光！确定是他</a><div class="ff-comment">#今天游戏圈发生了啥 #迷雾大陆 #浅评一下 #发现好游戏 #游戏日常</div></td>
+<td><div class="play">1989</div></td>
+<td class="metrics">赞 4 · 评 2</td>
+<td class="muted">飞洋 · 迷雾大陆</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+<tr class="ff-row">
+<td><span class="rank-badge">20</span></td>
+<td><img class="ff-cover" src="https://img2-tc.tapimg.com/moment/etag/FmZFhru5oz-ADYY4Icym-q7HL6DM_20260816200149.jpg/_tap_ugc.jpg" alt="" loading="lazy"></td>
+<td><a href="https://www.taptap.cn/moment/838143197732409203" target="_blank" rel="noopener">漫战我想你了</a><div class="ff-comment">这是今年第四次回来给你扫墓了，我很想你，听说有人能玩单机，但又问不到，可能是只有ipone能用吧</div></td>
+<td><div class="play">1973</div></td>
+<td class="metrics">赞 69 · 评 26</td>
+<td class="muted">不知道 · 漫威超级战争</td>
+<td><span class="trend"><span class="tag-new">新上榜</span></span></td>
+</tr>
+</tbody></table></div>
+
+</div></section>
+<section class="card" id="sec-health"><div class="card-head"><div class="card-title">数据源健康状态</div></div>
+<div class="logic-note">某平台失败不影响其他平台，明天自动重试</div>
+<div class="health-row"><b style="width:170px;flex:none">抖音游戏热榜</b><span class="hb hb-ok">正常</span><span class="muted">54 条 · 450 ms</span></div>
+<div class="health-row"><b style="width:170px;flex:none">B站游戏热榜</b><span class="hb hb-ok">正常</span><span class="muted">150 条 · 3326 ms</span></div>
+<div class="health-row"><b style="width:170px;flex:none">TapTap 游戏榜</b><span class="hb hb-ok">正常</span><span class="muted">20 条 · 2370 ms</span></div>
+<div class="health-row"><b style="width:170px;flex:none">TapTap 热门内容</b><span class="hb hb-ok">正常</span><span class="muted">20 条 · 5334 ms</span></div>
+</section>
+<div class="footer">游戏内容热点日报 · 本地生成，可离线打开 · 数据仅供参考，请遵守各平台规则<br>运行日志：logs/ 文件夹</div>
+</div></body></html>
